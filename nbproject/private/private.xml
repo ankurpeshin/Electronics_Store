@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Workspace/NetBeans/ElectronicStore/.git/config</file>
-            <file>file:/D:/Workspace/NetBeans/ElectronicStore/web/index.jsp</file>
-            <file>file:/D:/Workspace/NetBeans/ElectronicStore/nbproject/build-impl.xml</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/index.jsp</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/jspf/header.jspf</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/e-cart.jsp</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/category.jsp</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/e-confirmation.jsp</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/e-checkout.jsp</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/css/elexStore.css</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/jspf/footer.jspf</file>
         </group>
     </open-files>
 </project-private>
