@@ -18,4 +18,11 @@
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>
+<resource-ref>
+    <description>E-Store Connection</description>
+    <res-ref-name>jdbc/myDatasource</res-ref-name>
+    <res-type>javax.sql.ConnectionPoolDataSource</res-type>
+    <res-auth>Container</res-auth>
+    <res-sharing-scope>Shareable</res-sharing-scope>
+</resource-ref>
 </web-app>

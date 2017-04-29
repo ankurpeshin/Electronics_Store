@@ -8,9 +8,12 @@
             <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/e-cart.jsp</file>
             <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/category.jsp</file>
             <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/e-confirmation.jsp</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/src/java/controller/ControllerServlet.java</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/glassfish-resources.xml</file>
             <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/view/e-checkout.jsp</file>
             <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/css/elexStore.css</file>
             <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/jspf/footer.jspf</file>
+            <file>file:/D:/Workspace/NetBeans/SD_Final/Electronics_Store/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
