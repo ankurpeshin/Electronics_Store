@@ -9,6 +9,8 @@
     select * from product_category
 </sql:query>
     
+
+    
             <div id="left">
                 <div id="welcomeText">
                     <p>[ welcome text ]</p>
