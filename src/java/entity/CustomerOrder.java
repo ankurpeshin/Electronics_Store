@@ -24,9 +24,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,7 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "customer_order")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CustomerOrder.findAll", query = "SELECT c FROM CustomerOrder c")
     , @NamedQuery(name = "CustomerOrder.findByOrderId", query = "SELECT c FROM CustomerOrder c WHERE c.orderId = :orderId")
@@ -44,30 +40,34 @@ import javax.xml.bind.annotation.XmlTransient;
 public class CustomerOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "order_id")
     private Integer orderId;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
+// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @NotNull
     @Column(name = "order_amount")
     private BigDecimal orderAmount;
+    
     @Basic(optional = false)
-    @NotNull
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
+    
     @Basic(optional = false)
-    @NotNull
     @Column(name = "order_confirmation")
     private int orderConfirmation;
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
+    private Collection<OrderedProduct> orderedProductCollection;
+    
     @JoinColumn(name = "customer_customer_id", referencedColumnName = "customer_id")
     @ManyToOne(optional = false)
     private Customer customerCustomerId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
-    private Collection<OrderedProduct> orderedProductCollection;
+    
+   
 
     public CustomerOrder() {
     }
@@ -123,7 +123,7 @@ public class CustomerOrder implements Serializable {
         this.customerCustomerId = customerCustomerId;
     }
 
-    @XmlTransient
+
     public Collection<OrderedProduct> getOrderedProductCollection() {
         return orderedProductCollection;
     }

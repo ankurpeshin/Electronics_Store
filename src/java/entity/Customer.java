@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "customer")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
     , @NamedQuery(name = "Customer.findByCustomerId", query = "SELECT c FROM Customer c WHERE c.customerId = :customerId")
+    , @NamedQuery(name = "Customer.findByCustomerName", query = "SELECT c FROM Customer c WHERE c.customerName = :customerName")
     , @NamedQuery(name = "Customer.findByCustomerEmail", query = "SELECT c FROM Customer c WHERE c.customerEmail = :customerEmail")
     , @NamedQuery(name = "Customer.findByCustomerPhone", query = "SELECT c FROM Customer c WHERE c.customerPhone = :customerPhone")
     , @NamedQuery(name = "Customer.findByCustomerAddress", query = "SELECT c FROM Customer c WHERE c.customerAddress = :customerAddress")
@@ -47,22 +47,27 @@ public class Customer implements Serializable {
     @Column(name = "customer_id")
     private Integer customerId;
     @Basic(optional = false)
-    @NotNull
+
+    @Size(min = 1, max = 45)
+    @Column(name = "customer_name")
+    private String customerName;
+    @Basic(optional = false)
+   
     @Size(min = 1, max = 45)
     @Column(name = "customer_email")
     private String customerEmail;
     @Basic(optional = false)
-    @NotNull
+    
     @Size(min = 1, max = 45)
     @Column(name = "customer_phone")
     private String customerPhone;
     @Basic(optional = false)
-    @NotNull
+   
     @Size(min = 1, max = 45)
     @Column(name = "customer_address")
     private String customerAddress;
     @Basic(optional = false)
-    @NotNull
+    
     @Size(min = 1, max = 2)
     @Column(name = "customer_region")
     private String customerRegion;
@@ -79,12 +84,14 @@ public class Customer implements Serializable {
         this.customerId = customerId;
     }
 
-    public Customer(Integer customerId, String customerEmail, String customerPhone, String customerAddress, String customerRegion) {
+    public Customer(Integer customerId, String customerName, String customerEmail, String customerPhone, String customerAddress, String customerRegion,String customerCcnumber) {
         this.customerId = customerId;
+        this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPhone = customerPhone;
         this.customerAddress = customerAddress;
         this.customerRegion = customerRegion;
+        this.customerCcnumber = customerCcnumber;
     }
 
     public Integer getCustomerId() {
@@ -93,6 +100,14 @@ public class Customer implements Serializable {
 
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
+    }
+    
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getCustomerEmail() {
