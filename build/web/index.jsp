@@ -11,7 +11,7 @@
     
 
     
-            <div id="left">
+<div id="indexLeftColumn">
                 <div id="welcomeText">
                     <p>[ welcome text ]</p>
                     
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div id="right">
+<div id="indexRightColumn">
                 <c:forEach var="currCategory" items="${categoryElex}">
                      <div class="categoryBox">
                         <a href="category?${currCategory.categoryId}">

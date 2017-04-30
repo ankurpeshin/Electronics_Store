@@ -6,54 +6,13 @@
     Author     : ankur
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<%--<sql:query var="categories" dataSource="jdbc/myDatasource">
-    select * from product_category
-</sql:query>
-<sql:query var="selectedCategory" dataSource="jdbc/myDatasource">
-    SELECT categoryName FROM product_category WHERE categoryId = ?
-    <sql:param value="${pageContext.request.queryString}"/>
-</sql:query>    
-<sql:query var="categoryProducts" dataSource="jdbc/myDatasource">
-    SELECT * FROM product_catalog WHERE product_category_categoryId = ?
-    <sql:param value="${pageContext.request.queryString}"/>
-</sql:query>--%>
 
+<div id="categoryLeftColumn">
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/elexStore.css">
-        <title>Product Category</title>
-    </head>
-    <body>
-        <div id="main">
-            <!--            <div id="header">
-                            <div id="widgetBar">
-            
-                                <div class="headerWidget">
-                                    [ language toggle ]
-                                </div>
-            
-                                <div class="headerWidget">
-                                    [ checkout button ]
-                                </div>
-            
-                                <div class="headerWidget">
-                                    [ shopping cart widget ]
-                                </div>
-            
-                            </div>
-                        </div>-->
-
-            <div id="categoryLeftColumn">
-                <div class="categoryButton" id="selectedCategory">
                     <c:forEach var="category" items="${categoryElex}">
 
                         <c:choose>
-                            <c:when test="${category.categoryId == pageContext.request.queryString}">
+            <c:when test="${category.categoryName == selectedCategory.categoryName}">
                                 <div class="categoryButton" id="selectedCategory">
                                     <span class="categoryText">
                                         ${category.categoryName}
@@ -62,21 +21,19 @@
                             </c:when>
                             <c:otherwise>
                                 <a href="category?${category.categoryId}" class="categoryButton">
-                                    <div class="categoryText">
+                    <span class="categoryText">
                                         ${category.categoryName}
-                                    </div>
+                    </span>
                                 </a>
                             </c:otherwise>
                         </c:choose>
 
                     </c:forEach>
                 </div>
-            </div>
 
-            <div id="categoryRightColumn">
-                <p id="categoryTitle">
-                    <span style="background-color: #f5eabe; padding: 7px;">${selectedCategory.categoryName}</span>
-                </p>
+<div id="categoryRightColumn">
+
+    <p id="categoryTitle">${selectedCategory.categoryName}</p>
 
                 <table id="productTable">
                     <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
@@ -109,11 +66,3 @@
                     </c:forEach>
                 </table>
             </div>
-
-            <div id="footer">
-                <hr>
-                <p id="footerText">[ footer text ]</p>
-            </div>
-        </div>
-    </body>
-</html>
