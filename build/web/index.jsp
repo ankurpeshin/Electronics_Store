@@ -5,9 +5,9 @@
     Created on : Apr 1, 2017, 11:58:20 AM
     Author     : ankur
 --%>
-<sql:query var="category" dataSource="jdbc/myDatasource">
+<%--<sql:query var="category" dataSource="jdbc/myDatasource">
     select * from product_category
-</sql:query>
+</sql:query>--%>
     
 
     
@@ -21,11 +21,11 @@
             </div>
 
             <div id="right">
-                <c:forEach var="currCategory" items="${category.rows}">
+                <c:forEach var="currCategory" items="${categoryElex}">
                      <div class="categoryBox">
-                        <a href="category?${currCategory.category_id}">
-                            <img src="${initParam.categoryImagePath}${currCategory.category_id}.png"
-                                 alt="${currCategory.category_name}"
+                        <a href="category?${currCategory.categoryId}">
+                            <img src="${initParam.categoryImagePath}${currCategory.categoryId}.png"
+                                 alt="${currCategory.categoryName}"
                                  style="height: 180px; width: 180px">
                         </a>
                     </div>

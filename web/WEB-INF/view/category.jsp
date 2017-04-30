@@ -9,19 +9,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
-<sql:query var="categories" dataSource="jdbc/myDatasource">
+<%--<sql:query var="categories" dataSource="jdbc/myDatasource">
     select * from product_category
 </sql:query>
 <sql:query var="selectedCategory" dataSource="jdbc/myDatasource">
-    SELECT category_name FROM product_category WHERE category_id = ?
+    SELECT categoryName FROM product_category WHERE categoryId = ?
     <sql:param value="${pageContext.request.queryString}"/>
 </sql:query>    
 <sql:query var="categoryProducts" dataSource="jdbc/myDatasource">
-    SELECT * FROM product_catalog WHERE product_category_category_id = ?
+    SELECT * FROM product_catalog WHERE product_category_categoryId = ?
     <sql:param value="${pageContext.request.queryString}"/>
-</sql:query>
-    
-    
+</sql:query>--%>
+
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,46 +30,40 @@
     </head>
     <body>
         <div id="main">
-            <div id="header">
-                <div id="widgetBar">
-
-                    <div class="headerWidget">
-                        [ language toggle ]
-                    </div>
-
-                    <div class="headerWidget">
-                        [ checkout button ]
-                    </div>
-
-                    <div class="headerWidget">
-                        [ shopping cart widget ]
-                    </div>
-
-                </div>
-
-                <a href="#">
-                    <img src="#" id="logo" alt="Affable Bean logo">
-                </a>
-
-                <img src="#" id="logoText" alt="the affable bean">
-            </div>
+            <!--            <div id="header">
+                            <div id="widgetBar">
+            
+                                <div class="headerWidget">
+                                    [ language toggle ]
+                                </div>
+            
+                                <div class="headerWidget">
+                                    [ checkout button ]
+                                </div>
+            
+                                <div class="headerWidget">
+                                    [ shopping cart widget ]
+                                </div>
+            
+                            </div>
+                        </div>-->
 
             <div id="categoryLeftColumn">
                 <div class="categoryButton" id="selectedCategory">
-                    <c:forEach var="category" items="${categories.rows}">
+                    <c:forEach var="category" items="${categoryElex}">
 
                         <c:choose>
-                            <c:when test="${category.category_id == pageContext.request.queryString}">
+                            <c:when test="${category.categoryId == pageContext.request.queryString}">
                                 <div class="categoryButton" id="selectedCategory">
                                     <span class="categoryText">
-                                        ${category.category_name}
+                                        ${category.categoryName}
                                     </span>
                                 </div>
                             </c:when>
                             <c:otherwise>
-                                <a href="category?${category.category_id}" class="categoryButton">
+                                <a href="category?${category.categoryId}" class="categoryButton">
                                     <div class="categoryText">
-                                        ${category.category_name}
+                                        ${category.categoryName}
                                     </div>
                                 </a>
                             </c:otherwise>
@@ -80,37 +74,39 @@
             </div>
 
             <div id="categoryRightColumn">
-                <p id="categoryTitle">${selectedCategory.rows[0].category_name}</p>
+                <p id="categoryTitle">
+                    <span style="background-color: #f5eabe; padding: 7px;">${selectedCategory.categoryName}</span>
+                </p>
 
                 <table id="productTable">
-                      <c:forEach var="product" items="${categoryProducts.rows}" varStatus="iter">
+                    <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
 
-                  <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
-                    <td>
-                        <img src="${initParam.categoryImagePath}products/${product.product_id}.png"
-                          alt="${product.product_name}"
-                          style="height: 100px; width: 100px">
-                     </td>
-            <td>
-                ${product.product_name}
-                <br>
-                <span class="smallText">${product.product_desc}</span>
-            </td>
-            <td>
-                &euro; ${product.product_price} / unit
-            </td>
-            <td>
-                <form action="addToCart" method="post">
-                    <input type="hidden"
-                           name="productId"
-                           value="${product.product_id}">
-                    <input type="submit"
-                           value="add to cart">
-                </form>
-            </td>
-        </tr>
+                        <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                            <td>
+                                <img src="${initParam.categoryImagePath}products/${product.productId}.png"
+                                     alt="${product.productName}"
+                                     style="height: 100px; width: 100px">
+                            </td>
+                            <td>
+                                ${product.productName}
+                                <br>
+                                <span class="smallText">${product.productDesc}</span>
+                            </td>
+                            <td>
+                                &euro; ${product.productPrice} / unit
+                            </td>
+                            <td>
+                                <form action="addToCart" method="post">
+                                    <input type="hidden"
+                                           name="productId"
+                                           value="${product.productId}">
+                                    <input type="submit"
+                                           value="add to cart">
+                                </form>
+                            </td>
+                        </tr>
 
-    </c:forEach>
+                    </c:forEach>
                 </table>
             </div>
 
