@@ -1,4 +1,4 @@
-            <div id="footer">
+<div id="footer" style="position: fixed ;bottom: 5px">
                 <br>
                 <hr id="footerDivider">
                 <p id="footerText" class="reallySmallText">

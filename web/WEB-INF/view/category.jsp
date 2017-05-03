@@ -6,7 +6,7 @@
     Author     : ankur
 --%>
 
-
+<br/>
 <div id="categoryLeftColumn">
 
                     <c:forEach var="category" items="${categoryElex}">
@@ -50,14 +50,14 @@
                                 <span class="smallText">${product.productDesc}</span>
                             </td>
                             <td>
-                                &euro; ${product.productPrice} / unit
+                                &dollar; ${product.productPrice} / unit
                             </td>
                             <td>
                                 <form action="addToCart" method="post">
                                     <input type="hidden"
                                            name="productId"
                                            value="${product.productId}">
-                                    <input type="submit"
+                                    <input type="submit" style="font-family: cursive;box-shadow: #000"
                                            value="add to cart">
                                 </form>
                             </td>

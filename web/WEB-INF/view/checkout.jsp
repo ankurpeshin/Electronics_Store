@@ -57,7 +57,7 @@
                            value="${param.address}">
 
                     <br>
-                    prague
+                    City Region
                     <select name="cityRegion">
                       <c:forEach begin="1" end="10" var="regionNumber">
                         <option value="${regionNumber}"
@@ -89,7 +89,7 @@
 
         <ul>
             <li>Next-day delivery is guaranteed</li>
-            <li>A &euro; ${initParam.deliverySurcharge}
+            <li>A &dollar; ${initParam.deliverySurcharge}
                 delivery surcharge is applied to all purchase orders</li>
         </ul>
 
@@ -97,17 +97,17 @@
             <tr>
                 <td>subtotal:</td>
                 <td class="checkoutPriceColumn">
-                    &euro; ${cart.subtotal}</td>
+                    &dollar; ${cart.subtotal}</td>
             </tr>
             <tr>
                 <td>delivery surcharge:</td>
                 <td class="checkoutPriceColumn">
-                    &euro; ${initParam.deliverySurcharge}</td>
+                    &dollar; ${initParam.deliverySurcharge}</td>
             </tr>
             <tr>
                 <td class="total">total:</td>
                 <td class="total checkoutPriceColumn">
-                    &euro; ${cart.total}</td>
+                    &dollar; ${cart.total}</td>
             </tr>
         </table>
     </div>

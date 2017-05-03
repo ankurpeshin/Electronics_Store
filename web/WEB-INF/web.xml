@@ -9,6 +9,10 @@
         <param-name>deliverySurcharge</param-name>
         <param-value>3.00</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>resources.messages</param-value>
+    </context-param>
     <session-config>
         <session-timeout>
             10
@@ -16,17 +20,33 @@
     </session-config>
     <jsp-config>
         <jsp-property-group>
-            <description>Header and Footer</description>
+            <description>JSP configuration for the store front</description>
             <url-pattern>/index.jsp</url-pattern>
             <url-pattern>/WEB-INF/view/*</url-pattern>
+            <url-pattern>/WEB-INF/jspf/error/*</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
+        </jsp-property-group>
+   
+        <jsp-property-group>
+            <description>JSP configuration for the admin console</description>
+             <url-pattern>/admin/login.jsp</url-pattern>
+            <url-pattern>/admin/index.jsp</url-pattern>
+            <url-pattern>/admin/error.jsp</url-pattern>
+            <include-prelude>/admin/jspf/header.jspf</include-prelude>
+            <include-coda>/admin/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>
     
     <servlet>
         <servlet-name>ControllerServlet</servlet-name>
         <servlet-class>controller.ControllerServlet</servlet-class> 
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>controller.AdminServlet</servlet-class> 
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -48,4 +68,58 @@
     <param-name>categoryImagePath</param-name>
     <param-value>images/category/</param-value>
 </context-param>
+
+   <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/admin/login.jsp</form-login-page>
+            <form-error-page>/admin/error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+<!-- 
+    <security-constraint>
+        <display-name>Checkout</display-name>
+        <web-resource-collection>
+            <web-resource-name>Checkout</web-resource-name>
+            <url-pattern>/checkout</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>-->
+
+<!--Annotations in the AdminServlet (@ServletSecurity and @HttpConstraint) are
+    used instead of the <security-constraint> entry below-->
+<!--<security-constraint>
+        <display-name>Admin</display-name>
+        <web-resource-collection>
+            <web-resource-name>E-Store Administration</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>eStoreAdmin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+
+<security-role>
+        <description>access to administration console</description>
+        <role-name>eStoreAdmin</role-name>
+    </security-role>
+    -->
+        <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/jspf/error/403.jspf</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jspf/error/404.jspf</location>
+    </error-page>
+
 </web-app>

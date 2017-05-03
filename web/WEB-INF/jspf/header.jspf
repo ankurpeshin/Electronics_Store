@@ -17,100 +17,96 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/elexStore.css">
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/lightbox-2.6.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="css/bootstrap-glyphicons.css">
+        <link rel="stylesheet" href="css/lightbox.css">
+        <link rel="stylesheet" href="css/style.css">
+
         <title>Electronics Store</title>
     </head>
     <body>
         <div id="main">
-            <div id="header">
-                <div id="widgetBar">
+            <div >
 
-                    <div class="headerWidget">
-                        [ language toggle ]
+
+                <div class="navbar navbar-fixed-top">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-th-list"></span></a>
+                            <a href="index.jsp" class="brand" style="position: relative; top:9px">Electronics Store of Troy</a>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav pull-right">
+                                    <li>
+                                        <c:if test="${!empty cart && cart.numberOfItems != 0 &&
+
+                                                      !fn:contains(pageContext.request.servletPath,'/checkout') &&
+                                                      requestScope['javax.servlet.forward.servlet_path'] ne '/checkout' &&
+
+                                                      !fn:contains(pageContext.request.servletPath,'/cart') &&
+                                                      requestScope['javax.servlet.forward.servlet_path'] ne '/cart'}">
+
+                                              <a href="checkout" class="bubble">
+                                                  proceed to checkout &#x279f;
+                                              </a>
+                                        </c:if>
+
+                                    </li>
+                                    <li style="position: relative; top:9px">
+                                        <img src="images/1.png" alt="shopping cart icon" ></li>
+
+                                    <%-- If 'numberOfItems' property doesn't exist, or if number of items
+                                         in cart is 0, output '0', otherwise output 'numberOfItems' --%>
+                                    <li style="position: relative; top:10px; font-family: cursive">
+
+                                        <c:choose>
+                                            <c:when test="${cart.numberOfItems == null}">
+                                                0
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${cart.numberOfItems}
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <%-- Handle singular/plural forms of 'item' --%>
+                                        <c:choose>
+                                            <c:when test="${cart.numberOfItems == 1}">
+                                                item
+                                            </c:when>
+                                            <c:otherwise>
+                                                items
+                                            </c:otherwise>
+                                        </c:choose>
+
+
+                                        <c:if test="${!empty cart && cart.numberOfItems != 0 &&
+
+                                                      !fn:contains(pageContext.request.servletPath,'/cart') &&
+                                                      requestScope['javax.servlet.forward.servlet_path'] ne '/cart'}">
+
+
+                                        </c:if>
+
+
+                                    </li>
+                                    <li> <a href="viewCart" style="font-family: cursive" >View cart</a></li>
+                                    <li><a href="/Electronics_Store/admin/index.jsp" style="font-family: cursive">Admin</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-
-                <%-- checkout widget --%>
-                    <div class="headerWidget">
-
-                       <%-- tests for the following:
-                            * if cart exists and is not empty
-                            * if the servlet path does not contain '/checkout'
-                            * if the requested view is not checkout
-                            * if the servlet path does not contain '/cart'
-                            * if the requested view is not cart
-
-                            <c:if test="${!empty sessionScope.cart}">
-                                CART EXISTS AND IS NOT NULL
-                            </c:if>
-                                <BR>
-                            <c:if test="${sessionScope.cart.numberOfItems != 0}">
-                                NUMBER OF ITEMS IN CART IS NOT 0
-                            </c:if>
-                                <BR>
-                            <c:if test="${fn:contains(pageContext.request.servletPath,'/checkout')}">
-                                SERVLET PATH CONTAINS '/checkout'
-                            </c:if>
-                                <BR>
-                            <c:if test="${requestScope['javax.servlet.forward.servlet_path'] ne '/checkout'}">
-                                REQUEST IS NOT CHECKOUT
-                            </c:if> --%>
-
-                        <c:if test="${!empty cart && cart.numberOfItems != 0 &&
-
-                                      !fn:contains(pageContext.request.servletPath,'/checkout') &&
-                                      requestScope['javax.servlet.forward.servlet_path'] ne '/checkout' &&
-
-                                      !fn:contains(pageContext.request.servletPath,'/cart') &&
-                                      requestScope['javax.servlet.forward.servlet_path'] ne '/cart'}">
-
-                      <a href="checkout" class="bubble">
-                        proceed to checkout &#x279f;
-                      </a>
-                    </c:if>
-                    </div>
-
-                <%-- shopping cart widget --%>
-                  <div class="headerWidget" id="viewCart">
-
-                    <img src="images/cart.gif" alt="shopping cart icon" id="cart">
-
-                  <%-- If 'numberOfItems' property doesn't exist, or if number of items
-                       in cart is 0, output '0', otherwise output 'numberOfItems' --%>
-                    <span class="horizontalMargin">
-                      <c:choose>
-                        <c:when test="${cart.numberOfItems == null}">
-                          0
-                        </c:when>
-                        <c:otherwise>
-                          ${cart.numberOfItems}
-                        </c:otherwise>
-                      </c:choose>
-
-                  <%-- Handle singular/plural forms of 'item' --%>
-                      <c:choose>
-                        <c:when test="${cart.numberOfItems == 1}">
-                          item
-                        </c:when>
-                        <c:otherwise>
-                          items
-                        </c:otherwise>
-                      </c:choose>
-                    </span>
-
-                    <c:if test="${!empty cart && cart.numberOfItems != 0 &&
-
-                                  !fn:contains(pageContext.request.servletPath,'/cart') &&
-                                  requestScope['javax.servlet.forward.servlet_path'] ne '/cart'}">
-
-                      <a href="viewCart" class="bubble">
-                          view cart
-                      </a>
-                    </c:if>
-                </div>
                 </div>
 
-                <a href="index.jsp">
-                    <img src="images/e-store.jpg" id="logo" alt="Affable Bean logo">
-                </a>
 
-                      <img src="images/logoText.png" id="logoText" alt="Electronics Store">
+                                        
+                                        <br/><br/><br/>
+
+
             </div>
+        </div>
